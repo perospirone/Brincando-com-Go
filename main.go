@@ -9,7 +9,7 @@ import (
 var reader, text string
 
 func main() {
-	getArray()
+	fmt.Print(getArray())
 }
 
 func inputKey() string {
@@ -17,24 +17,22 @@ func inputKey() string {
 	fmt.Print("Enter text: ")
 	text, _ := reader.ReadString('\n')
 
-	//fmt.Println(text)
-
 	return text
 }
 
 func scopeLocal() string {
-	var a string
+	var local string
 
-	a = "dasdasa"
+	local = "Sou uma variavel local então só existo nesse bloco de codigo\n"
 
-	return a
+	return local
 }
 
-func getArray() {
+func getArray() *[2]string {
 	var arr = new([2]string)
 
 	arr[0] = scopeLocal()
 	arr[1] = inputKey()
 
-	print(arr[1])
+	return arr
 }
