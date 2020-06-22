@@ -8,8 +8,12 @@ import (
 
 var reader, text string
 
+var arr *[2]string
+
 func main() {
-	fmt.Print(getArray())
+	arr = getArray()
+
+	travelArray(arr)
 }
 
 func inputKey() string {
@@ -35,4 +39,14 @@ func getArray() *[2]string {
 	arr[1] = inputKey()
 
 	return arr
+}
+
+func travelArray(arr *[2]string) {
+	var count int
+
+	count = 1
+
+	for i := 0; i <= count; i++ {
+		fmt.Println(arr[i])
+	}
 }
