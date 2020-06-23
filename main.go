@@ -15,7 +15,8 @@ func main() {
 
 	//travelArray(arr)
 
-	validInput(inputKey())
+	//validInput(inputKey())
+	oneUpToTen()
 
 }
 
@@ -62,5 +63,15 @@ func travelArray(arr *[2]string) {
 
 	for i := 0; i <= count; i++ {
 		fmt.Println(arr[i])
+	}
+}
+
+func oneUpToTen() {
+	i := 1
+	max := 10
+
+	for i <= max {
+		fmt.Println(i)
+		i++
 	}
 }
