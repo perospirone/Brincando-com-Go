@@ -11,9 +11,12 @@ var reader, text string
 var arr *[2]string
 
 func main() {
-	arr = getArray()
+	//arr = getArray()
 
-	travelArray(arr)
+	//travelArray(arr)
+
+	validInput(inputKey())
+
 }
 
 func inputKey() string {
@@ -22,6 +25,17 @@ func inputKey() string {
 	text, _ := reader.ReadString('\n')
 
 	return text
+}
+
+func validInput(input string) bool {
+	var emptyString bool
+
+	if input == " " {
+		fmt.Println("empty string")
+		emptyString = true
+	}
+
+	return emptyString
 }
 
 func scopeLocal() string {
