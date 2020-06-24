@@ -12,7 +12,6 @@ var reader, text string
 var arr *[2]string
 
 func main() {
-	lines, _ := readLines("senha.txt")
 
 }
 
@@ -80,18 +79,16 @@ func fileExists() {
 	}
 }
 
-func readFile() {
-	b, err := ioutil.ReadFile("senha.txt")
-	// can file be opened?
+func readFile(path string) string {
+	b, err := ioutil.ReadFile(path)
+
 	if err != nil {
 		fmt.Println(err)
 	}
 
-	// convert bytes to string
 	str := string(b)
 
-	// show file data
-	fmt.Println(str)
+	return str
 }
 
 func readLines(path string) ([]string, error) {
