@@ -3,6 +3,7 @@ package main
 import (
 	"bufio"
 	"fmt"
+	"io/ioutil"
 	"os"
 )
 
@@ -11,12 +12,7 @@ var reader, text string
 var arr *[2]string
 
 func main() {
-	//arr = getArray()
-
-	//travelArray(arr)
-
-	//validInput(inputKey())
-	oneUpToTen()
+	readFile()
 
 }
 
@@ -74,4 +70,26 @@ func oneUpToTen() {
 		fmt.Println(i)
 		i++
 	}
+}
+
+func fileExists() {
+	if _, err := os.Stat("senha.txt"); err == nil {
+		fmt.Printf("File exists\n")
+	} else {
+		fmt.Printf("File does not exist\n")
+	}
+}
+
+func readFile() {
+	b, err := ioutil.ReadFile("senha.txt")
+	// can file be opened?
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	// convert bytes to string
+	str := string(b)
+
+	// show file data
+	fmt.Println(str)
 }
