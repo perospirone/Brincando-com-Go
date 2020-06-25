@@ -12,7 +12,7 @@ var reader, text string
 var arr *[2]string
 
 func main() {
-
+	writeFile("senha.txt", "senhas fodas daleeeee klasjdlksakdsa")
 }
 
 func inputKey() string {
@@ -105,4 +105,18 @@ func readLines(path string) ([]string, error) {
 		lines = append(lines, scanner.Text())
 	}
 	return lines, scanner.Err()
+}
+
+func writeFile(path string, words string) error {
+	file, err := os.Create(path)
+
+	if err != nil {
+		return err
+	}
+
+	defer file.Close()
+
+	file.WriteString(words)
+
+	return nil
 }
