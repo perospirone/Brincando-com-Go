@@ -10,7 +10,7 @@ import (
 var reader, text string
 
 func main() {
-	writeFile("senha.txt", "senhas fodas daleeeee klasjdlksakdsa")
+	err := renameFile("senha.txt", "d.txt")
 }
 
 func inputKey() string {
@@ -113,6 +113,16 @@ func writeFile(path string, words string) error {
 	defer file.Close()
 
 	file.WriteString(words)
+
+	return nil
+}
+
+func renameFile(path string, destination string) error {
+	err := os.Rename(path, destination)
+
+	if err != nil {
+		return err
+	}
 
 	return nil
 }
