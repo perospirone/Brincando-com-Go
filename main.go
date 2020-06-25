@@ -9,8 +9,6 @@ import (
 
 var reader, text string
 
-var arr *[2]string
-
 func main() {
 	writeFile("senha.txt", "senhas fodas daleeeee klasjdlksakdsa")
 }
@@ -35,15 +33,14 @@ func validInput(input string) bool {
 }
 
 func scopeLocal() string {
-	var local string
 
-	local = "Sou uma variavel local então só existo nesse bloco de codigo\n"
+	local := "Sou uma variavel local então só existo nesse bloco de codigo\n"
 
 	return local
 }
 
 func getArray() *[2]string {
-	var arr = new([2]string)
+	arr := new([2]string)
 
 	arr[0] = scopeLocal()
 	arr[1] = inputKey()
@@ -52,9 +49,8 @@ func getArray() *[2]string {
 }
 
 func travelArray(arr *[2]string) {
-	var count int
 
-	count = 1
+	count := 1
 
 	for i := 0; i <= count; i++ {
 		fmt.Println(arr[i])
