@@ -9,20 +9,15 @@ import (
 
 var reader, text string
 
+/*
 type Robo struct {
 	name string
 	age  int
 	gun  string
-}
+}*/
 
 func main() {
-	var d Robo
-
-	d.name = "Dani"
-	d.age = 12
-	d.gun = "m4"
-
-	fmt.Println(d)
+	numbersInFull()
 }
 
 func inputKey() string {
@@ -137,4 +132,16 @@ func renameFile(path string, destination string) error {
 	}
 
 	return nil
+}
+
+func numbersInFull() {
+	numbers := make(map[int]string)
+
+	numbers[1] = "one"
+	numbers[2] = "two"
+	numbers[3] = "three"
+	numbers[4] = "four"
+	numbers[5] = "five"
+
+	fmt.Println(numbers)
 }
