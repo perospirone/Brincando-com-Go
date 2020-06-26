@@ -6,7 +6,6 @@ import (
 	"io/ioutil"
 	"math/rand"
 	"os"
-	"time"
 )
 
 var reader, text string
@@ -19,9 +18,10 @@ type Robo struct {
 }*/
 
 func main() {
-	rand.Seed(time.Now().UnixNano())
-	randomNum := random(0, 10)
-	fmt.Printf("Random number: %d\n", randomNum)
+	/*x := 10
+	fmt.Printf("Address of variable x: %x\n", &x)
+	fmt.Printf("Value of variable x: %d\n", x)*/
+	pointers()
 }
 
 func inputKey() string {
@@ -128,8 +128,8 @@ func writeFile(path string, words string) error {
 	return nil
 }
 
-func renameFile(path string, destination string) error {
-	err := os.Rename(path, destination)
+func renameFile(path string, newPath string) error {
+	err := os.Rename(path, newPath)
 
 	if err != nil {
 		return err
@@ -152,4 +152,20 @@ func numbersInFull() {
 
 func random(min int, max int) int {
 	return rand.Intn(max-min) + min
+}
+
+func pointers() {
+	// variable
+	x := 5
+
+	// create pointer
+	var pointer *int
+
+	// store the address of x in pointer variable
+	pointer = &x
+
+	// display info
+	fmt.Printf("Memory address of variable x: %x\n", &x)
+	fmt.Printf("Memory address stored in ipointer variable: %x\n", pointer)
+	fmt.Printf("Contents of *ipointer variable: %d\n", *pointer)
 }
