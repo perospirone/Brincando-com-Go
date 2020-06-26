@@ -4,7 +4,9 @@ import (
 	"bufio"
 	"fmt"
 	"io/ioutil"
+	"math/rand"
 	"os"
+	"time"
 )
 
 var reader, text string
@@ -17,7 +19,9 @@ type Robo struct {
 }*/
 
 func main() {
-	numbersInFull()
+	rand.Seed(time.Now().UnixNano())
+	randomNum := random(0, 10)
+	fmt.Printf("Random number: %d\n", randomNum)
 }
 
 func inputKey() string {
@@ -144,4 +148,8 @@ func numbersInFull() {
 	numbers[5] = "five"
 
 	fmt.Println(numbers)
+}
+
+func random(min int, max int) int {
+	return rand.Intn(max-min) + min
 }
