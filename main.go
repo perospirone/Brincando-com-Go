@@ -9,8 +9,20 @@ import (
 
 var reader, text string
 
+type Robo struct {
+	name string
+	age  int
+	gun  string
+}
+
 func main() {
-	err := renameFile("senha.txt", "d.txt")
+	var d Robo
+
+	d.name = "Dani"
+	d.age = 12
+	d.gun = "m4"
+
+	fmt.Println(d)
 }
 
 func inputKey() string {
