@@ -18,7 +18,7 @@ type Robo struct {
 }*/
 
 func main() {
-	splitHelloWorld()
+	sum(1, 2, 32311, 9, 8, 6, 5)
 }
 
 func inputKey() string {
@@ -172,4 +172,13 @@ func splitHelloWorld() map[string]string {
 	split["w"] = text[6:11]
 
 	return split
+}
+
+func hi(name string) {
+	defer fmt.Print(name)
+	fmt.Print("Hi ")
+}
+
+func sum(numbers ...int) {
+	fmt.Println(numbers)
 }
