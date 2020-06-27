@@ -171,8 +171,5 @@ func splitHelloWorld() map[string]string {
 	split["h"] = text[0:5]
 	split["w"] = text[6:11]
 
-	/*split[0] = split1
-	split[1] = split2*/
-
 	return split
 }
