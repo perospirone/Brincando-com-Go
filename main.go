@@ -18,10 +18,7 @@ type Robo struct {
 }*/
 
 func main() {
-	/*x := 10
-	fmt.Printf("Address of variable x: %x\n", &x)
-	fmt.Printf("Value of variable x: %d\n", x)*/
-	pointers()
+	splitHelloWorld()
 }
 
 func inputKey() string {
@@ -155,17 +152,27 @@ func random(min int, max int) int {
 }
 
 func pointers() {
-	// variable
 	x := 5
 
-	// create pointer
 	var pointer *int
 
-	// store the address of x in pointer variable
 	pointer = &x
 
-	// display info
 	fmt.Printf("Memory address of variable x: %x\n", &x)
 	fmt.Printf("Memory address stored in ipointer variable: %x\n", pointer)
 	fmt.Printf("Contents of *ipointer variable: %d\n", *pointer)
+}
+
+func splitHelloWorld() map[string]string {
+	split := make(map[string]string)
+
+	text := "hello world"
+
+	split["h"] = text[0:5]
+	split["w"] = text[6:11]
+
+	/*split[0] = split1
+	split[1] = split2*/
+
+	return split
 }
