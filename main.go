@@ -2,9 +2,11 @@ package main
 
 import (
 	"bufio"
+	"encoding/json"
 	"fmt"
 	"io/ioutil"
 	"math/rand"
+	"net/http"
 	"os"
 )
 
@@ -17,8 +19,18 @@ type Robo struct {
 	gun  string
 }*/
 
+type Response struct {
+	TradeID int
+	Price   string
+	Size    string
+	Bid     string
+	Ask     string
+	Volume  string
+	Time    string
+}
+
 func main() {
-	sum(1, 2, 32311, 9, 8, 6, 5)
+	getContent()
 }
 
 func inputKey() string {
@@ -181,4 +193,27 @@ func hi(name string) {
 
 func sum(numbers ...int) {
 	fmt.Println(numbers)
+}
+
+func getContent() Response {
+	// json data
+	url := "https://api.gdax.com/products/BTC-EUR/ticker"
+
+	res, err := http.Get(url)
+
+	if err != nil {
+		panic(err.Error())
+	}
+
+	body, err := ioutil.ReadAll(res.Body)
+
+	if err != nil {
+		panic(err.Error())
+	}
+
+	var data Response
+
+	json.Unmarshal(body, &data)
+
+	return data
 }
