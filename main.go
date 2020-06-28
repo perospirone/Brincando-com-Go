@@ -12,13 +12,6 @@ import (
 
 var reader, text string
 
-/*
-type Robo struct {
-	name string
-	age  int
-	gun  string
-}*/
-
 type Response struct {
 	TradeID int
 	Price   string
