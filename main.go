@@ -4,6 +4,7 @@ import (
 	"bufio"
 	"encoding/json"
 	"fmt"
+	"io"
 	"io/ioutil"
 	"log"
 	"math/rand"
@@ -11,6 +12,7 @@ import (
 	"net/http"
 	"os"
 	"os/exec"
+	"time"
 )
 
 type Response struct {
@@ -23,8 +25,12 @@ type Response struct {
 	Time    string
 }
 
+var mux map[string]func(http.ResponseWriter, *http.Request)
+
+type myHandler struct{}
+
 func main() {
-	socketServer()
+	d()
 }
 
 // Sem criatividade pra criar um nome pra essa função
@@ -265,5 +271,34 @@ func socketClient() {
 		// wait for reply
 		message, _ := bufio.NewReader(conn).ReadString('\n')
 		fmt.Print("Message from server: " + message)
+	}
+}
+
+func (*myHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
+	// Implement route forwarding
+	if h, ok := mux[r.URL.String()]; ok {
+		//Implement route forwarding with this handler, the corresponding route calls the corresponding func.
+		h(w, r)
+		return
+	}
+	_, _ = io.WriteString(w, "URL: "+r.URL.String())
+}
+
+func Tmp(w http.ResponseWriter, r *http.Request) {
+	_, _ = io.WriteString(w, "version 3")
+}
+
+func d() {
+	server := http.Server{
+		Addr:        ":8080",
+		Handler:     &myHandler{},
+		ReadTimeout: 5 * time.Second,
+	}
+
+	mux = make(map[string]func(http.ResponseWriter, *http.Request))
+	mux["/tmp"] = Tmp
+	err := server.ListenAndServe()
+	if err != nil {
+		log.Fatal(err)
 	}
 }
