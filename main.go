@@ -125,7 +125,7 @@ func writeFile(path string, words string) error {
 
 	defer file.Close()
 
-	file.WriteString(words)
+	_, _ = file.WriteString(words)
 
 	return nil
 }
@@ -206,7 +206,11 @@ func getContent() Response {
 
 	var data Response
 
-	json.Unmarshal(body, &data)
+	err2 := json.Unmarshal(body, &data)
+
+	if err2 != nil {
+
+	}
 
 	return data
 }
