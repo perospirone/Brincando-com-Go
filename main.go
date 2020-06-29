@@ -251,3 +251,19 @@ func socketServer() {
 		fmt.Print("Message Received:", string(message))
 	}
 }
+
+func socketClient() {
+	// connect to server
+	conn, _ := net.Dial("tcp", "127.0.0.1:8000")
+	for {
+		// what to send?
+		reader := bufio.NewReader(os.Stdin)
+		fmt.Print("Text to send: ")
+		text, _ := reader.ReadString('\n')
+		// send to server
+		_, _ = fmt.Fprintf(conn, text+"\n")
+		// wait for reply
+		message, _ := bufio.NewReader(conn).ReadString('\n')
+		fmt.Print("Message from server: " + message)
+	}
+}
