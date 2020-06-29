@@ -7,6 +7,7 @@ import (
 	"io/ioutil"
 	"log"
 	"math/rand"
+	"net"
 	"net/http"
 	"os"
 	"os/exec"
@@ -23,7 +24,7 @@ type Response struct {
 }
 
 func main() {
-
+	socketServer()
 }
 
 // Sem criatividade pra criar um nome pra essa função
@@ -231,5 +232,22 @@ func speak(text string) {
 	cmd := exec.Command("espeak", text)
 	if err := cmd.Run(); err != nil {
 		log.Fatal(err)
+	}
+}
+
+func socketServer() {
+	fmt.Println("Start server...")
+
+	// listen on port 8000
+	ln, _ := net.Listen("tcp", ":8000")
+
+	// accept connection
+	conn, _ := ln.Accept()
+
+	// run loop forever (or until ctrl-c)
+	for {
+		// get message, output
+		message, _ := bufio.NewReader(conn).ReadString('\n')
+		fmt.Print("Message Received:", string(message))
 	}
 }
