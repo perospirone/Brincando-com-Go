@@ -5,12 +5,12 @@ import (
 	"encoding/json"
 	"fmt"
 	"io/ioutil"
+	"log"
 	"math/rand"
 	"net/http"
 	"os"
+	"os/exec"
 )
-
-var reader, text string
 
 type Response struct {
 	TradeID int
@@ -23,7 +23,7 @@ type Response struct {
 }
 
 func main() {
-	getContent()
+	speak(scopeLocal())
 }
 
 func inputKey() string {
@@ -209,4 +209,11 @@ func getContent() Response {
 	json.Unmarshal(body, &data)
 
 	return data
+}
+
+func speak(text string) {
+	cmd := exec.Command("espeak", text)
+	if err := cmd.Run(); err != nil {
+		log.Fatal(err)
+	}
 }
