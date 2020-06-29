@@ -23,7 +23,21 @@ type Response struct {
 }
 
 func main() {
-	speak(scopeLocal())
+
+}
+
+// Sem criatividade pra criar um nome pra essa função
+func semNome() {
+	text := inputKey()
+	a := validInput(text)
+
+	if a == true {
+		panic("Empty String")
+	}
+
+	arr := getArray()
+
+	travelArray(arr)
 }
 
 func inputKey() string {
@@ -35,14 +49,12 @@ func inputKey() string {
 }
 
 func validInput(input string) bool {
-	var emptyString bool
-
 	if input == " " {
 		fmt.Println("empty string")
-		emptyString = true
+		return true
 	}
 
-	return emptyString
+	return false
 }
 
 func scopeLocal() string {
@@ -52,8 +64,8 @@ func scopeLocal() string {
 	return local
 }
 
-func getArray() *[2]string {
-	arr := new([2]string)
+func getArray() map[int]string {
+	arr := make(map[int]string)
 
 	arr[0] = scopeLocal()
 	arr[1] = inputKey()
@@ -61,7 +73,7 @@ func getArray() *[2]string {
 	return arr
 }
 
-func travelArray(arr *[2]string) {
+func travelArray(arr map[int]string) {
 
 	count := 1
 
@@ -209,7 +221,7 @@ func getContent() Response {
 	err2 := json.Unmarshal(body, &data)
 
 	if err2 != nil {
-
+		panic(err2.Error())
 	}
 
 	return data
